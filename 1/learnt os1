@@ -1,0 +1,16 @@
+#	child process will get created when you call fork
+#	the child process and parent process gets executed parallely,there is no order in which they get executed.
+#	Orphan state:
+	->the parent will finish its process and gets terminated,child process will be still going on, hence child becomes orphan
+	->but what about the exit status of child process? => the parent process before dieing will give the controll of exit status of child process to `init process`(now init process behaves as guardian to child process)
+	->Orphan process <==> `sleep(time)` should be present in child process i.e child process will sleep till the parent process dies.
+#	Zombie state: 
+	->here in this case the child will get terminated, but the the parent will still be running. The child's exit status will be given only when parent is about to exit(or when the parent is exited and the child process is still running then its exit status control is transferred to init process) ,so the child remains in background as <defunct> process which means non functional process.This state of the child is called as Zombie state.
+	-> Zombie process <==> in this case the parent will be sleeping.
+	
+
+# refer these links for more ideas on fork:
+	->http://stackoverflow.com/questions/12711799/creating-child-processes-in-parallel
+	->http://stackoverflow.com/questions/21586292/in-fork-which-will-run-first-parent-or-child
+	->http://stackoverflow.com/questions/8494732/who-executes-first-after-fork-parent-or-the-child
+	->http://stackoverflow.com/questions/27787816/does-the-following-code-runs-two-child-process-executing-in-parallel-from-a-sing
